@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+    compile 'org.apache.flink:flink-core:1.12.1'
+    compile ('org.apache.flink:flink-connector-kafka_2.12:1.12.1') {
+        exclude group: 'org.apache.kafka', module: 'kafka-clients'
+    }
+    compile 'org.apache.flink:flink-clients_2.12:1.12.1'
+    compile 'org.apache.flink:flink-streaming-java_2.12:1.12.1'
+    compile 'org.apache.kafka:kafka_2.12:1.1.1'
+    compile 'org.apache.kafka:kafka-clients:1.1.1'
+
+
+    testCompile 'org.awaitility:awaitility:3.1.6'
+    testCompile ('com.salesforce.kafka.test:kafka-junit5:3.2.2')
+
+}
+
+test {
+    useJUnitPlatform()
+}
